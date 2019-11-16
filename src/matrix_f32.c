@@ -1,6 +1,6 @@
 /**
  * @Date:   2019-11-12T14:46:23+08:00
- * @Last modified time: 2019-11-12T22:36:43+08:00
+ * @Last modified time: 2019-11-16T11:34:10+08:00
  */
 
 #include "util/runtime_error.h"
@@ -95,7 +95,7 @@ static inline bool m_matrixf32InitWithInvalidDimension(MatrixDimType t_dim) {
 static inline size_t m_matrixf32TotalSize(const MatrixF32Ptr t_target) { return t_target->m_row * t_target->m_col; }
 
 MatrixF32Ptr matrixf32Create(MatrixDimType t_dim) {
-	MatrixF32Ptr mat_ptr = (MatrixF32Ptr)malloc(sizeof(struct MatrixF32));
+	MatrixF32Ptr mat_ptr = malloc(sizeof(struct MatrixF32));
 
 	if (mat_ptr != 0) {
 		if (m_matrixf32InitWithInvalidDimension(t_dim)) {
@@ -119,7 +119,7 @@ MatrixF32Ptr matrixf32Create(MatrixDimType t_dim) {
 }
 
 MatrixF32Ptr matrixf32CreateContainer(MatrixDimType t_dim, float *t_val, int t_buffer_len) {
-	MatrixF32Ptr mat_ptr = (MatrixF32Ptr)malloc(sizeof(struct MatrixF32));
+	MatrixF32Ptr mat_ptr = malloc(sizeof(struct MatrixF32));
 
 	if (mat_ptr != 0) {
 		if ((int)(t_dim.m_row * t_dim.m_col) > t_buffer_len) {

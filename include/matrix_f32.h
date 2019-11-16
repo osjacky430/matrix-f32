@@ -1,6 +1,6 @@
 /**
  * @Date:   2019-11-12T14:46:23+08:00
- * @Last modified time: 2019-11-12T22:30:38+08:00
+ * @Last modified time: 2019-11-16T20:01:36+08:00
  */
 #ifndef MATRIX_F32_H_
 #define MATRIX_F32_H_
@@ -40,25 +40,92 @@ extern "C" {
 typedef struct MatrixF32 *MatrixF32Ptr;
 
 /**
- *	Defines the interface for the ADT
+ * @brief  This function create a MatrixF32 instance and dynamic allocated buffer with given dimension
+ *
+ * @param  t_dim Column and row of the desired matrix
+ * @return			 MatrixF32Ptr
  */
 MatrixF32Ptr matrixf32Create(MatrixDimType t_dim);
+
+/**
+ * @brief  This function create only a MatrixF32 instance with given buffer and dimension
+ *
+ * @param  t_dim        Column and row of the desired matrix
+ * @param  t_val        Floating point buffer
+ * @param  t_buffer_len Length of the buffer, the length of buffer should be equal to column * row
+ * @return              MatrixF32Ptr
+ */
 MatrixF32Ptr matrixf32CreateContainer(MatrixDimType t_dim, float *t_val, int t_buffer_len);
+
+/**
+ * @brief  This function destroy MatrixF32 instance
+ *
+ * @param  t_dest The matrix instance to  be freed
+ * @return        MatrixStatus
+ */
 MatrixStatus matrixf32Destroy(MatrixF32Ptr *t_dest);
 
 /**
- *	Getter functions
+ * @brief	 This function returns the column of the matrix
+ *
+ * @param  t_dest Matrix to get the column
+ * @return        The column number of the matrix passed to this function
  */
 size_t matrixf32GetColNumber(MatrixF32Ptr t_dest);
+
+/**
+ * @brief  This function  returns the row of the matrix
+ *
+ * @param  t_dest Matrix to get the row
+ * @return        The row number of the matrix passed to this function
+ */
 size_t matrixf32GetRowNumber(MatrixF32Ptr t_dest);
+
+/**
+ * @brief  This function returns the AddrOwnerShip of the matrix
+ *
+ * @param  t_dest Matrix to get the ownership
+ * @return        The ownership of the matrix passed to this functioh
+ */
 AddrOwnerShip matrixf32GetOwnership(MatrixF32Ptr t_dest);
+
+/**
+ * @brief  This function returns the value of the matrix at given row and column
+ *
+ * @param  t_dest Matrix to get value
+ * @param  t_dim  Column and row
+ *
+ * @return        The value at given row and column of the matrix passed to this function
+ */
 float matrixf32GetValueAt(MatrixF32Ptr t_dest, MatrixDimType t_dim);
+
+/**
+ * @brief  This function returns the pointer to the buffer
+ *
+ * @param  t_dest Matrix to get the pointer to the buffer
+ * @return        The pointer to the buffer
+ *
+ * @note 	 It is not encouraged to use this function, it will be removed in the future
+ */
 float *matrixf32GetBuffer(MatrixF32Ptr t_dest);	 // @TODO: remove this
 
 /**
- *	Setter functions
+ * @brief  This function set the value at position of given the row and column
+ *
+ * @param  t_dest The matrix to be set
+ * @param  t_dim  Column and row
+ * @param  t_val  Value to set to
+ * @return        MatrixStatus
  */
 MatrixStatus matrixf32SetValueAt(MatrixF32Ptr t_dest, MatrixDimType t_dim, float t_val);
+
+/**
+ * @brief	 This function set all entries in the matrix to one value
+ *
+ * @param  t_dest The matrix to be set
+ * @param  t_val  Value to set to
+ * @return        MatrixStatus
+ */
 MatrixStatus matrixf32SetAllEntriesTo(MatrixF32Ptr t_dest, float t_val);
 
 /**
